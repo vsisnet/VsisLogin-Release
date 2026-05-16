@@ -1,7 +1,7 @@
 {
-  "version": "4.4.4",
-  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.4/VsisLogin_v4.4.4.zip",
-  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.4/VsisLogin_v4.4.4.zip",
+  "version": "4.4.5",
+  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.5/VsisLogin_v4.4.5.zip",
+  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.5/VsisLogin_v4.4.5.zip",
   "releasedAt": "2026-05-16",
-  "notes": "v4.4.4 — Fix updater 'requires elevation'\n\nVsisLogin.csproj quên ApplicationManifest → main app chạy non-admin → spawn Updater (có admin manifest) → Win32 error 740 'The requested operation requires elevation'. Click banner '🎉 Phiên bản mới' show MessageBox 'Không spawn được updater'.\n\nFix:\n• Thêm app.manifest với requireAdministrator + wire vào csproj. Windows pop 1 UAC prompt lúc khởi động VsisLogin.exe, từ đó Updater inherit admin token, không cần UAC thêm.\n• VersionService catch ERROR_ELEVATION_REQUIRED (740) → retry với UseShellExecute=true + Verb='runas' để Windows pop UAC fallback nếu vì lý do nào đó manifest không kick in.\n\nLưu ý: User v4.4.0 / v4.4.1 / v4.4.2 / v4.4.3 đã cài cần manual download v4.4.4 lần này (vì các bản đó bị bug elevation và banner click sẽ lỗi). Từ v4.4.4 trở đi flow update qua banner sẽ work auto."
+  "notes": "v4.4.5 — Test in-place updater flow sau khi vá lỗi elevation\n\nBản này release để xác nhận v4.4.4 (vá manifest + Verb=runas) cho phép banner click chạy updater end-to-end. User v4.4.4 sẽ thấy banner '🎉 Phiên bản mới 4.4.5' → click → app đóng → updater download zip + giải nén + ghi đè + relaunch → titlebar đổi sang 'VsisLogin 4.4.5'.\n\nKhông có code change nào khác ngoài bump SettingGeneral.Version."
 }
