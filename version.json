@@ -1,0 +1,7 @@
+{
+  "version": "4.4.0",
+  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.0/VsisLogin_v4.4.0.zip",
+  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.0/VsisLogin_v4.4.0.zip",
+  "releasedAt": "2026-05-16",
+  "notes": "v4.4.0 — Tích hợp vsisproxy-emulator: Quản lý giả lập + Quản lý proxy + in-place updater\n\nReplace toàn bộ phần Quản lý giả lập cũ bằng phiên bản từ vsisproxy-emulator. Auto-detect LDPlayer 4/5/9, NoxPlayer, MEmu, BlueStacks tới 100 emu LDP. Port-conflict detection. ADB auto-enable rescan 15s.\n\nTab Quản lý Proxy hoàn toàn mới (sidebar 🌐): list proxy profile với local listener cố định mỗi proxy (127.0.0.1:port). Import hàng loạt với Check proxy realtime (status pill 5 màu Pending/Checking/Alive/Dead/Timeout + latency). Copy all local URLs.\n\nKhi gắn proxy cho emu: hot-apply qua ProxyEngine.ApplyBindingAsync — ADB push http_proxy về local listener, không cần Stop/Start engine. Tự động gán proxy round-robin nếu bật checkbox. Cảnh báo nếu mở nhiều install / phiên bản giả lập cùng lúc.\n\nIn-place updater (mirror VsisProxy.Updater): khi có version mới, click banner trên main window → app đóng → updater nhỏ tải zip + giải nén + ghi đè + relaunch. Không phải chạy update_tool cũ nữa.\n\nProfile module + login automation giữ nguyên không touch."
+}
