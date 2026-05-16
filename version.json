@@ -1,7 +1,7 @@
 {
-  "version": "4.4.1",
-  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.1/VsisLogin_v4.4.1.zip",
-  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.1/VsisLogin_v4.4.1.zip",
+  "version": "4.4.2",
+  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.2/VsisLogin_v4.4.2.zip",
+  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.2/VsisLogin_v4.4.2.zip",
   "releasedAt": "2026-05-16",
-  "notes": "v4.4.1 — Auto-download Data bundle ở lần chạy đầu\n\nBản này dùng để test flow in-place updater giới thiệu ở v4.4.0. User v4.4.0 sẽ thấy banner 'Có phiên bản mới 4.4.1' trên main window — click → app đóng → VsisLogin.Updater.exe tự tải zip + giải nén + ghi đè + relaunch.\n\nThay đổi chính:\n• Services/DataBundleService.cs mới — Kiểm tra Data\\ folder (sentinel Data\\orbita-browser\\chrome.exe) ở App.OnStartup. Nếu chưa có → pop dialog 'Đang tải dữ liệu VsisLogin (~170 MB)' tự tải Data.zip từ public release rồi giải nén vào folder cài. Idempotent — interrupt rồi retry sạch.\n• Views/DataDownloadDialog mới — MaterialDesign window có progress bar realtime (Downloading X/170 MB → Extracting…).\n• Profile/GroupProfile/login automation phụ thuộc Data\\ — trước đây user phải tự copy thủ công, giờ tự bootstrap lần đầu.\n• SettingGeneral.Version 4.4.0 → 4.4.1.\n\nLưu ý: Data.zip là asset riêng của release v4.4.1 (~167 MB). Tải chỉ 1 lần — các lần mở app sau dùng lại folder Data đã giải nén, không re-download."
+  "notes": "v4.4.2 — Fix update banner không hiện khi LoadUserInfoAsync fail\n\nMainWindowViewModel.InitializeAsync gói cả 3 lệnh (UserInfo / Version check / Notifications) trong cùng 1 try-catch. Nếu lệnh đầu fail (license API timeout, mạng) → catch → 2 lệnh sau bị skip → version check không chạy → banner '🎉 Phiên bản mới X.Y.Z' không hiện.\n\nFix: tách thành 3 try-catch độc lập, mỗi lệnh log riêng.\n\nĐây là lý do user v4.4.0 không thấy banner cho v4.4.1. Sau khi update lên v4.4.2 (manual download lần này), các bản sau sẽ tự nhận update qua banner."
 }
