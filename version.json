@@ -1,7 +1,7 @@
 {
-  "version": "4.4.9",
-  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.9/VsisLogin_v4.4.9.zip",
-  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.9/VsisLogin_v4.4.9.zip",
+  "version": "4.4.10",
+  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.10/VsisLogin_v4.4.10.zip",
+  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.10/VsisLogin_v4.4.10.zip",
   "releasedAt": "2026-05-16",
-  "notes": "v4.4.9 — Verify v4.4.8 updater kill-aggressive\n\nKhông có code change. Bump để xác nhận updater v4.4.8 (force-kill parent + KillProcessesUnder install dir + 3s grace) thực sự replace được các WPF DLL (MaterialDesignColors / MaterialDesignThemes...) trước đây bị 'being used by another process'.\n\nUser v4.4.8 click banner → updater chạy → titlebar đổi 'VsisLogin 4.4.9'."
+  "notes": "v4.4.10 — Updater dùng taskkill /F /T + scan Process.Modules\n\nv4.4.9 vẫn fail vì:\n1. .NET Process.Kill silent fail trên admin/protected process — parent VsisLogin.exe không thực sự chết\n2. v4.4.8 KillProcessesUnder chỉ check MainModule.FileName, mà property này throw access denied cho nhiều process → bỏ sót cả chính parent VsisLogin\n\nFix:\n• ForceKillPid: Process.Kill RỒI taskkill /F /T /PID làm fallback. taskkill gọi TerminateProcess Win32 trực tiếp, ăn được case Process.Kill silent fail.\n• KillProcessesUnder: nếu MainModule throw → iterate Process.Modules, match bất kỳ loaded module nào nằm trong install dir. Bắt được parent kể cả khi MainModule access denied.\n• Belt + suspenders: thêm taskkill /F /T /IM theo NAME (VsisLogin / VsisLogin.App / VsisLogin.EmulatorCore / adb / chromedriver). Bắt second-instance.\n• Grace delay 3s → 5s sau kill.\n\nUser v4.4.8 / v4.4.9 click banner → updater cũ chưa có fix → vẫn fail. Cần manual download v4.4.10. Từ v4.4.10 trở đi flow update sẽ work."
 }
