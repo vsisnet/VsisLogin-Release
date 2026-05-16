@@ -1,7 +1,7 @@
 {
-  "version": "4.4.8",
-  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.8/VsisLogin_v4.4.8.zip",
-  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.8/VsisLogin_v4.4.8.zip",
+  "version": "4.4.9",
+  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.9/VsisLogin_v4.4.9.zip",
+  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.9/VsisLogin_v4.4.9.zip",
   "releasedAt": "2026-05-16",
-  "notes": "v4.4.8 — Updater kill aggressive\n\nv4.4.6 retry + rename-aside vẫn fail vì WPF DLL (MaterialDesignColors, MaterialDesignThemes) load với FILE_SHARE_READ → Windows từ chối cả Move lẫn Copy. Rename trick không work cho managed DLL.\n\nFix: Updater giờ duyệt MỌI Process đang chạy, check MainModule.FileName, kill bất kỳ process nào có image nằm trong install dir. Bắt được chromedriver.exe / chrome.exe của Selenium, adb.exe daemon, second VsisLogin instance, mọi thứ giữ lock DLL. Sleep 3s sau kill để Windows drop section view.\n\nUser v4.4.6 / v4.4.7 click banner → updater cũ → vẫn fail. Cần manual download v4.4.8. Từ v4.4.8 trở đi: kill aggressive + retry ăn lock → flow update work thật."
+  "notes": "v4.4.9 — Verify v4.4.8 updater kill-aggressive\n\nKhông có code change. Bump để xác nhận updater v4.4.8 (force-kill parent + KillProcessesUnder install dir + 3s grace) thực sự replace được các WPF DLL (MaterialDesignColors / MaterialDesignThemes...) trước đây bị 'being used by another process'.\n\nUser v4.4.8 click banner → updater chạy → titlebar đổi 'VsisLogin 4.4.9'."
 }
