@@ -1,7 +1,7 @@
 {
-  "version": "4.4.2",
-  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.2/VsisLogin_v4.4.2.zip",
-  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.2/VsisLogin_v4.4.2.zip",
+  "version": "4.4.3",
+  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.3/VsisLogin_v4.4.3.zip",
+  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.3/VsisLogin_v4.4.3.zip",
   "releasedAt": "2026-05-16",
-  "notes": "v4.4.2 — Fix update banner không hiện khi LoadUserInfoAsync fail\n\nMainWindowViewModel.InitializeAsync gói cả 3 lệnh (UserInfo / Version check / Notifications) trong cùng 1 try-catch. Nếu lệnh đầu fail (license API timeout, mạng) → catch → 2 lệnh sau bị skip → version check không chạy → banner '🎉 Phiên bản mới X.Y.Z' không hiện.\n\nFix: tách thành 3 try-catch độc lập, mỗi lệnh log riêng.\n\nĐây là lý do user v4.4.0 không thấy banner cho v4.4.1. Sau khi update lên v4.4.2 (manual download lần này), các bản sau sẽ tự nhận update qua banner."
+  "notes": "v4.4.3 — Test in-place updater (v4.4.2 → v4.4.3)\n\nBản này release để test flow in-place updater end-to-end. User chạy v4.4.2 sẽ thấy banner '🎉 Phiên bản mới 4.4.3' trên góc trên main window → click → app đóng → VsisLogin.Updater.exe tự tải zip + giải nén + ghi đè + relaunch → app khởi động lại với Title 'VsisLogin 4.4.3' (titlebar giờ bind dynamic, không hardcode).\n\nThay đổi: MainWindow Title bind {Binding TitleWithVersion} đọc runtime từ SettingGeneral.Version. Mỗi release bump version sẽ tự đổi titlebar."
 }
