@@ -1,7 +1,7 @@
 {
-  "version": "4.4.6",
-  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.6/VsisLogin_v4.4.6.zip",
-  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.6/VsisLogin_v4.4.6.zip",
+  "version": "4.4.7",
+  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.7/VsisLogin_v4.4.7.zip",
+  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.7/VsisLogin_v4.4.7.zip",
   "releasedAt": "2026-05-16",
-  "notes": "v4.4.6 — Fix updater file-lock retry\n\nv4.4.5 spawn updater OK, nhưng khi copy đè DLL bị lỗi 'MaterialDesignColors.dll is being used by another process'. Root cause: HasExited=true nhưng Windows chưa release file handles. Cũng có adb.exe daemon background giữ tools/adb/adb.exe.\n\nFix trong Updater/MainWindow.xaml.cs:\n• WaitForParentExitAsync delay thêm 1500ms sau khi parent exit để Windows release handle\n• CopyOver kill adb + VsisLogin.App orphan trước khi copy\n• CopyWithRetry: 20 lần retry mỗi 500ms; cuối cùng rename file lock thành .old-{ticks} để drop file mới (Windows cho phép rename open file, không cho overwrite)\n\nUser v4.4.5 đã cài: click banner '4.4.6' → updater giờ chạy gọn → titlebar VsisLogin 4.4.6.\n\nUser v4.4.4 hoặc cũ hơn: vẫn dùng updater cũ có bug → vẫn fail ở chỗ DLL lock → cần manual download v4.4.6 lần này, từ đó self-update work."
+  "notes": "v4.4.7 — Verify updater retry fix\n\nKhông có code change ngoài SettingGeneral.Version. Dùng để xác nhận v4.4.6 (grace-delay 1500ms + retry 20×500ms + orphan kill + rename-aside fallback) cho phép user v4.4.6 click banner và end up ở v4.4.7 không còn 'DLL being used' nữa.\n\nSau khi update thành công titlebar đổi 'VsisLogin 4.4.7'."
 }
