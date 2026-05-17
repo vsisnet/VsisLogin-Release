@@ -1,7 +1,7 @@
-{
-  "version": "4.4.16",
-  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.16/VsisLogin_v4.4.16.zip",
-  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.16/VsisLogin_v4.4.16.zip",
-  "releasedAt": "2026-05-16",
-  "notes": "v4.4.16 — Definitive in-place update test from v4.4.15\n\nKhông có code change. Verify cuối cùng cho updater stack: v4.4.15 đã có IsRunningUpdaterFile() + PromotePendingUpdaterBinary scan *.new global. User v4.4.15 click banner → updater stage-aside VsisLogin.Updater.{exe,dll,deps.json,runtimeconfig.json,pdb} dưới dạng .new → copy app files OK → relaunch VsisLogin → App.OnStartup swap *.new → titlebar 'VsisLogin 4.4.16'.\n\nLần này flow update auto end-to-end, không cần can thiệp thủ công."
+﻿{
+    "downloadZipUrl":  "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.17/VsisLogin_v4.4.17.zip",
+    "notes":  "v4.4.17 release",
+    "version":  "4.4.17",
+    "downloadUrl":  "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.17/VsisLogin_v4.4.17.zip",
+    "releasedAt":  "2026-05-17"
 }
