@@ -1,7 +1,7 @@
 {
-  "version": "4.4.15",
-  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.15/VsisLogin_v4.4.15.zip",
-  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.15/VsisLogin_v4.4.15.zip",
+  "version": "4.4.16",
+  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.16/VsisLogin_v4.4.16.zip",
+  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.16/VsisLogin_v4.4.16.zip",
   "releasedAt": "2026-05-16",
-  "notes": "v4.4.15 — Verify v4.4.14 updater family stage-aside\n\nKhông có code change. Verify v4.4.14 IsRunningUpdaterFile prefix match + App.OnStartup PromotePendingUpdaterBinary scan *.new global.\n\nLưu ý chicken-and-egg: user v4.4.13 KHÔNG self-update được lên v4.4.15 vì fix nằm trong updater binary v4.4.14+, còn updater v4.4.13 đang chạy không biết stage-aside .dll. Cần manual download v4.4.14 hoặc v4.4.15 1 lần để lấy updater binary mới trên disk. Từ v4.4.14 trở đi in-place update work end-to-end auto-relaunch."
+  "notes": "v4.4.16 — Definitive in-place update test from v4.4.15\n\nKhông có code change. Verify cuối cùng cho updater stack: v4.4.15 đã có IsRunningUpdaterFile() + PromotePendingUpdaterBinary scan *.new global. User v4.4.15 click banner → updater stage-aside VsisLogin.Updater.{exe,dll,deps.json,runtimeconfig.json,pdb} dưới dạng .new → copy app files OK → relaunch VsisLogin → App.OnStartup swap *.new → titlebar 'VsisLogin 4.4.16'.\n\nLần này flow update auto end-to-end, không cần can thiệp thủ công."
 }
