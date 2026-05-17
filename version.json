@@ -1,7 +1,7 @@
 {
-  "version": "4.4.14",
-  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.14/VsisLogin_v4.4.14.zip",
-  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.14/VsisLogin_v4.4.14.zip",
+  "version": "4.4.15",
+  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.15/VsisLogin_v4.4.15.zip",
+  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.15/VsisLogin_v4.4.15.zip",
   "releasedAt": "2026-05-16",
-  "notes": "v4.4.14 — Fix updater self-overwrite cho cả .dll/.deps/.runtimeconfig\n\nv4.4.13 update được app rồi nhưng kẹt ở VsisLogin.Updater.dll (managed assembly đang load), nên updater không tự tắt và relaunch app. v4.4.12 chỉ stage-aside .exe, miss .dll + .deps.json + .runtimeconfig.json.\n\nFix:\n• Updater.CopyOver: bất kỳ file nào prefix 'VsisLogin.Updater.' → drop với suffix .new thay vì overwrite. Catches .exe / .dll / .deps.json / .runtimeconfig.json / .pdb.\n• App.PromotePendingUpdaterBinary: scan TẤT CẢ *.new ở install dir ở startup, swap từng file. Per-file try-catch nên 1 file lock không block các file khác.\n\nSau update v4.4.13 → v4.4.14, updater sẽ:\n1. Copy app files OK\n2. Drop VsisLogin.Updater.{exe,dll,deps.json,runtimeconfig.json,pdb}.new\n3. Process.Start restart VsisLogin.exe → app v4.4.14 mở\n4. Updater self-exit\n5. App.OnStartup tự swap mọi *.new (lúc đó updater đã chết, files unlocked)\n\nFlow update giờ hoàn toàn auto, không phải mở lại app thủ công."
+  "notes": "v4.4.15 — Verify v4.4.14 updater family stage-aside\n\nKhông có code change. Verify v4.4.14 IsRunningUpdaterFile prefix match + App.OnStartup PromotePendingUpdaterBinary scan *.new global.\n\nLưu ý chicken-and-egg: user v4.4.13 KHÔNG self-update được lên v4.4.15 vì fix nằm trong updater binary v4.4.14+, còn updater v4.4.13 đang chạy không biết stage-aside .dll. Cần manual download v4.4.14 hoặc v4.4.15 1 lần để lấy updater binary mới trên disk. Từ v4.4.14 trở đi in-place update work end-to-end auto-relaunch."
 }
