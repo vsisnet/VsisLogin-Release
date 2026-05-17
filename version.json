@@ -1,7 +1,7 @@
 {
-  "version": "4.4.12",
-  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.12/VsisLogin_v4.4.12.zip",
-  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.12/VsisLogin_v4.4.12.zip",
+  "version": "4.4.13",
+  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.13/VsisLogin_v4.4.13.zip",
+  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.13/VsisLogin_v4.4.13.zip",
   "releasedAt": "2026-05-16",
-  "notes": "v4.4.12 — Fix Updater tự suicide qua tree-kill\n\nROOT CAUSE 'updater chạy im lặng rồi tắt không update không relaunch': Updater spawn bởi VsisLogin → là CHILD process của parent → cùng Windows job. Updater gọi p.Kill(entireProcessTree:true) trên parent → Windows tree-kill cả job → kill chính updater. Không exception popup vì TerminateProcess từ OS, không copy/relaunch vì đã chết giữa chừng.\n\nFix: bỏ /T flag mọi taskkill + bỏ entireProcessTree:true mọi Process.Kill trong updater. Mỗi call kill đúng 1 process. Orphan children (chromedriver, adb, second VsisLogin) vẫn được kill nhờ KillProcessesUnder + taskkill /F /IM theo NAME. Không tree, không suicide, cùng coverage.\n\nUser v4.4.10 / v4.4.11 click banner vẫn fail vì updater cũ chưa fix. Manual download v4.4.12 lần này. Từ v4.4.12 trở đi flow update REALLY work."
+  "notes": "v4.4.13 — Verify v4.4.12 no-suicide updater\n\nKhông có code change ngoài SettingGeneral.Version. Bump để xác nhận v4.4.12 fix (bỏ /T flag + entireProcessTree:true trong Updater) thực sự cho phép in-place update hoàn thành mà updater không tự tắt giữa chừng.\n\nUser v4.4.12 click banner → updater chạy → titlebar đổi 'VsisLogin 4.4.13'."
 }
