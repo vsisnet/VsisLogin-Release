@@ -1,7 +1,7 @@
 {
-  "version": "4.4.13",
-  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.13/VsisLogin_v4.4.13.zip",
-  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.13/VsisLogin_v4.4.13.zip",
+  "version": "4.4.14",
+  "downloadUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.14/VsisLogin_v4.4.14.zip",
+  "downloadZipUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/v4.4.14/VsisLogin_v4.4.14.zip",
   "releasedAt": "2026-05-16",
-  "notes": "v4.4.13 — Verify v4.4.12 no-suicide updater\n\nKhông có code change ngoài SettingGeneral.Version. Bump để xác nhận v4.4.12 fix (bỏ /T flag + entireProcessTree:true trong Updater) thực sự cho phép in-place update hoàn thành mà updater không tự tắt giữa chừng.\n\nUser v4.4.12 click banner → updater chạy → titlebar đổi 'VsisLogin 4.4.13'."
+  "notes": "v4.4.14 — Fix updater self-overwrite cho cả .dll/.deps/.runtimeconfig\n\nv4.4.13 update được app rồi nhưng kẹt ở VsisLogin.Updater.dll (managed assembly đang load), nên updater không tự tắt và relaunch app. v4.4.12 chỉ stage-aside .exe, miss .dll + .deps.json + .runtimeconfig.json.\n\nFix:\n• Updater.CopyOver: bất kỳ file nào prefix 'VsisLogin.Updater.' → drop với suffix .new thay vì overwrite. Catches .exe / .dll / .deps.json / .runtimeconfig.json / .pdb.\n• App.PromotePendingUpdaterBinary: scan TẤT CẢ *.new ở install dir ở startup, swap từng file. Per-file try-catch nên 1 file lock không block các file khác.\n\nSau update v4.4.13 → v4.4.14, updater sẽ:\n1. Copy app files OK\n2. Drop VsisLogin.Updater.{exe,dll,deps.json,runtimeconfig.json,pdb}.new\n3. Process.Start restart VsisLogin.exe → app v4.4.14 mở\n4. Updater self-exit\n5. App.OnStartup tự swap mọi *.new (lúc đó updater đã chết, files unlocked)\n\nFlow update giờ hoàn toàn auto, không phải mở lại app thủ công."
 }
