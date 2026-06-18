@@ -15,12 +15,13 @@
 
 ### Giới thiệu
 
-**VsisLogin** là phần mềm desktop (Windows) tích hợp 4 module cốt lõi cho công việc multi-account / scaling:
+**VsisLogin** là phần mềm desktop (Windows) tích hợp 5 module cốt lõi cho công việc multi-account / scaling:
 
 1. **Quản lý Hồ sơ trình duyệt** — tạo profile Chrome (Orbita) với fingerprint riêng biệt cho mỗi profile, không dùng chung cookie/login với Chrome cá nhân.
 2. **Quản lý Giả lập Android** — phát hiện LDPlayer / Nox / MEmu / BlueStacks, tự bật ADB, gán proxy theo từng emulator instance qua ADB system-proxy injection.
 3. **Quản lý Proxy** — kho proxy HTTP / SOCKS5, kiểm tra live, xác định vị trí IP, làm nguồn proxy cho các module khác.
-4. **Quản lý Game / App** *(mới — v4.4.22+)* — route từng `chrome.exe` / `firefox.exe` / game binary qua proxy bằng TUN engine (sing-box + wintun). Dùng cho app/game không hỗ trợ proxy native.
+4. **Quản lý Game / App** *(v4.4.22+)* — route từng `chrome.exe` / `firefox.exe` / game binary qua proxy bằng TUN engine (sing-box + wintun). Dùng cho app/game không hỗ trợ proxy native.
+5. **Đồng bộ Cloud** *(mới — v4.5.1+)* — đồng bộ profile (cookie/login), danh sách profile, kho proxy và nhóm lên cloud; dùng chung trên nhiều máy với cùng 1 license.
 
 ### Tính năng đầy đủ
 
@@ -56,6 +57,16 @@
 - Block QUIC outbound (forces TCP HTTP/2 fallback → đi qua proxy thay vì lò bỏ qua) + reject IPv6 leak
 - "📂 Mở log" button mở `sing-box.log` để debug
 - **Yêu cầu chạy as Administrator** lần đầu để install wintun service driver
+
+#### ☁️ Đồng bộ Cloud *(v4.5.1+)*
+- Đồng bộ **profile** (cookie / login / Local Storage — toàn bộ trạng thái đăng nhập) lên cloud, mở lại trên máy khác vẫn còn đăng nhập
+- Đồng bộ **danh sách profile + cấu hình** (proxy, fingerprint, nhóm) + **kho proxy** + **nhóm** giữa nhiều máy dùng chung 1 license
+- Chọn nơi lưu **theo từng profile** hoặc **áp dụng toàn bộ**: Local (chỉ máy này) · VSIS.net Cloud (managed) · Storage riêng (Google Drive / OneDrive / Dropbox / ...)
+- **Tự đồng bộ**: kéo bundle về trước khi Run, đẩy lên khi đóng profile / đóng app — không cần thao tác; kèm nút **"Sync ngay"** để đồng bộ hàng loạt thủ công
+- **Đa thiết bị an toàn**: khoá (lock) chống mở cùng 1 profile trên 2 máy cùng lúc; badge ☁️ (đã sync) / 🔒 (đang mở ở máy khác) trên danh sách
+- **Cách ly & mã hoá**: mỗi license có vùng lưu trữ riêng (credential riêng theo key); bundle mã hoá **AES-256-GCM** trước khi upload (tùy chọn)
+- **Hạn mức theo gói**: số profile được đồng bộ cloud theo gói license (hiển thị "đã dùng / tổng" + nút nâng cấp)
+- Profile chọn **Local** thì chỉ nằm trên máy đó; dữ liệu giả lập luôn giữ local — không đẩy lên cloud
 
 ### Yêu cầu hệ thống
 
@@ -143,12 +154,13 @@ VsisLogin có 2 đường update:
 
 ### About
 
-**VsisLogin** is a Windows desktop tool that bundles 4 modules used for multi-account / scaling work:
+**VsisLogin** is a Windows desktop tool that bundles 5 modules used for multi-account / scaling work:
 
 1. **Browser Profile Manager** — independent Chrome (Orbita) profiles with unique fingerprints; each profile has its own `--user-data-dir` so cookies / logins / extensions are fully isolated.
 2. **Android Emulator Manager** — auto-discovers LDPlayer / Nox / MEmu / BlueStacks, auto-enables ADB, assigns a proxy per emulator via ADB system-proxy injection.
 3. **Proxy Manager** — HTTP / SOCKS5 proxy inventory with live validation, IP geolocation, used as the proxy source by the other modules.
-4. **Game / App Manager** *(new — v4.4.22+)* — routes individual Windows processes (`chrome.exe`, game binaries, etc.) through a proxy via a sing-box subprocess + wintun TUN adapter. Useful for apps/games that don't expose a proxy setting.
+4. **Game / App Manager** *(v4.4.22+)* — routes individual Windows processes (`chrome.exe`, game binaries, etc.) through a proxy via a sing-box subprocess + wintun TUN adapter. Useful for apps/games that don't expose a proxy setting.
+5. **Cloud Sync** *(new — v4.5.1+)* — syncs profiles (cookies/logins), the profile list, proxy inventory and groups to the cloud; use them across multiple machines with one license.
 
 ### Full feature list
 
@@ -184,6 +196,16 @@ VsisLogin có 2 đường update:
 - Blocks QUIC outbound (forces TCP HTTP/2 fallback → goes through the proxy) + rejects IPv6 leak
 - "📂 Open log" button to inspect `sing-box.log`
 - **Requires Administrator** on first start to install the wintun service driver
+
+#### ☁️ Cloud Sync *(v4.5.1+)*
+- Sync **profiles** (cookies / logins / Local Storage — the full login state) to the cloud; reopen on another machine still logged in
+- Sync the **profile list + config** (proxy, fingerprint, groups) + **proxy inventory** + **groups** across machines sharing one license
+- Choose storage **per profile** or **apply to all**: Local (this machine only) · VSIS.net Cloud (managed) · Your own storage (Google Drive / OneDrive / Dropbox / ...)
+- **Auto-sync**: pulls the bundle before Run, pushes it on profile close / app close — no manual step; plus a **"Sync now"** button for manual bulk sync
+- **Multi-device safe**: a lock prevents opening the same profile on two machines at once; ☁️ (synced) / 🔒 (open elsewhere) badges on the list
+- **Isolation & encryption**: each license gets its own storage area (per-key credentials); bundles are **AES-256-GCM** encrypted before upload (optional)
+- **Plan quota**: number of cloud-synced profiles per license plan (shows "used / total" + upgrade button)
+- Profiles set to **Local** stay on that machine only; emulator data always stays local — never uploaded
 
 ### System Requirements
 
@@ -233,6 +255,28 @@ Two ways to get a key:
    Every proxy package sold on vsis.net includes a matching VsisLogin license at no extra cost — ask about it when ordering.
 
 The key activates per email + key. Logged in once, the key is cached for subsequent launches. Auto-update is built in — no manual download needed.
+
+---
+
+## 📋 Changelog
+
+### v4.5.1
+
+**🇻🇳 Tính năng mới — Đồng bộ Cloud ☁️**
+- Đồng bộ **profile** (cookie / login / trạng thái đăng nhập) lên cloud — mở lại trên máy khác vẫn còn đăng nhập
+- Đồng bộ **danh sách profile + cấu hình + kho proxy + nhóm** giữa nhiều máy dùng chung 1 license
+- Chọn nơi lưu **theo từng profile** hoặc **toàn bộ**: Local · VSIS.net Cloud · Storage riêng (Google Drive / OneDrive / ...)
+- **Tự đồng bộ** khi Run/Stop profile và khi đóng app; thêm nút **"Sync ngay"** để đồng bộ thủ công
+- **Đa thiết bị an toàn**: khoá chống mở trùng profile + badge ☁️/🔒; mỗi license có vùng lưu riêng + mã hoá AES-256
+- **Hạn mức số profile đồng bộ theo gói license**
+
+**🇬🇧 New feature — Cloud Sync ☁️**
+- Sync **profiles** (cookies / logins / login state) to the cloud — reopen on another machine still signed in
+- Sync the **profile list + config + proxy inventory + groups** across machines sharing one license
+- Storage **per profile** or **for all**: Local · VSIS.net Cloud · Your own storage (Google Drive / OneDrive / ...)
+- **Auto-sync** on profile Run/Stop and app close; plus a **"Sync now"** button for manual sync
+- **Multi-device safe**: lock against duplicate-open + ☁️/🔒 badges; per-license isolated storage + AES-256 encryption
+- **Per-plan cloud-sync profile quota**
 
 ---
 
