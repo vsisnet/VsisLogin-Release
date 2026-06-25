@@ -260,6 +260,26 @@ The key activates per email + key. Logged in once, the key is cached for subsequ
 
 ## 📋 Changelog
 
+### v4.6.0
+
+**🇻🇳 Tính năng mới — Proxy giả lập qua WinDivert (không cần ADB) 🛡️**
+- Gắn **proxy riêng cho từng giả lập** (HTTP & SOCKS5) bằng **WinDivert** theo tiến trình — bỏ phụ thuộc ADB shell (hết lỗi trùng port / nhận diện chậm)
+- Hỗ trợ **LDPlayer · NoxPlayer · MEmu** — tự dò đường dẫn, liệt kê giả lập **đang chạy lẫn đang tắt**
+- **Bật / Tắt** giả lập ngay trong app + **Bật/Tắt tất cả** (hoặc theo các giả lập được chọn)
+- **Chọn nhiều** giả lập (chọn tất cả) để thao tác hàng loạt
+- **Cài đặt giả lập**: bật/tắt loại giả lập, số giả lập mỗi proxy, ẩn/hiện install (vd giả lập trên ổ clone)
+- Chống lộ IP thật: DNS qua DoH, chặn UDP/QUIC + IPv6 ra ngoài proxy
+
+**🇬🇧 New feature — Emulator proxy via WinDivert (no ADB) 🛡️**
+- Assign a **dedicated proxy per emulator** (HTTP & SOCKS5) with **WinDivert** at the process level — no more ADB shell (no port clashes / slow detection)
+- Supports **LDPlayer · NoxPlayer · MEmu** — auto-detect paths, list **running and stopped** instances
+- **Start / Stop** emulators in-app + **Start/Stop all** (or only the selected ones)
+- **Multi-select** emulators (select all) for bulk actions
+- **Emulator settings**: toggle emulator types, emulators per proxy, hide/show installs (e.g. installs on a clone drive)
+- Real-IP leak protection: DNS over DoH, block UDP/QUIC + IPv6 outside the proxy
+
+---
+
 ### v4.5.1
 
 **🇻🇳 Tính năng mới — Đồng bộ Cloud ☁️**
