@@ -18,7 +18,7 @@
 **VsisLogin** là phần mềm desktop (Windows) tích hợp 5 module cốt lõi cho công việc multi-account / scaling:
 
 1. **Quản lý Hồ sơ trình duyệt** — tạo profile Chrome (Orbita) với fingerprint riêng biệt cho mỗi profile, không dùng chung cookie/login với Chrome cá nhân.
-2. **Quản lý Giả lập Android** — phát hiện LDPlayer / Nox / MEmu / BlueStacks, tự bật ADB, gán proxy theo từng emulator instance qua ADB system-proxy injection.
+2. **Quản lý Giả lập Android** — phát hiện LDPlayer / Nox / MEmu, gán proxy theo từng emulator tự động.
 3. **Quản lý Proxy** — kho proxy HTTP / SOCKS5, kiểm tra live, xác định vị trí IP, làm nguồn proxy cho các module khác.
 4. **Quản lý Game / App** *(v4.4.22+)* — route từng `chrome.exe` / `firefox.exe` / game binary qua proxy bằng TUN engine (sing-box + wintun). Dùng cho app/game không hỗ trợ proxy native.
 5. **Đồng bộ Cloud** *(mới — v4.5.1+)* — đồng bộ profile (cookie/login), danh sách profile, kho proxy và nhóm lên cloud; dùng chung trên nhiều máy với cùng 1 license.
@@ -36,11 +36,10 @@
 - Pagination preserved khi profile flip Run/Stop — không reset về page 1
 
 #### 📱 Quản lý Giả lập Android
-- Auto-discovery LDPlayer (v4 / v9 / v64), Nox, MEmu, BlueStacks qua process scan
-- Auto-bật `adbDebug = 1` trên mọi LDPlayer instance (kể cả instance vừa tạo qua FileSystemWatcher) — không cần thủ công vào Settings
-- Gán proxy theo từng emulator: `adb shell settings put global http_proxy` + broadcast `PROXY_CHANGE` ép app re-read setting
+- Auto-discovery LDPlayer (v4 / v9 / v64), Nox, MEmu qua process scan
+- Gán proxy theo từng emulator tự động
 - Hot-apply binding khi engine đang chạy — không cần Stop → Start cycle
-- DNS / QUIC / ICMP / IPv6 leak guard (WinDivert) — chặn rò rỉ IP gốc qua các kênh non-HTTP
+- DNS / QUIC / ICMP / IPv6 leak guard — chặn rò rỉ IP gốc qua các kênh non-HTTP
 
 #### 🌐 Quản lý Proxy
 - Hỗ trợ HTTP CONNECT + SOCKS5 (RFC 1928)
@@ -157,7 +156,7 @@ VsisLogin có 2 đường update:
 **VsisLogin** is a Windows desktop tool that bundles 5 modules used for multi-account / scaling work:
 
 1. **Browser Profile Manager** — independent Chrome (Orbita) profiles with unique fingerprints; each profile has its own `--user-data-dir` so cookies / logins / extensions are fully isolated.
-2. **Android Emulator Manager** — auto-discovers LDPlayer / Nox / MEmu / BlueStacks, auto-enables ADB, assigns a proxy per emulator via ADB system-proxy injection.
+2. **Android Emulator Manager** — auto-discovers LDPlayer / Nox / MEmu, assigns a proxy per emulator automatically.
 3. **Proxy Manager** — HTTP / SOCKS5 proxy inventory with live validation, IP geolocation, used as the proxy source by the other modules.
 4. **Game / App Manager** *(v4.4.22+)* — routes individual Windows processes (`chrome.exe`, game binaries, etc.) through a proxy via a sing-box subprocess + wintun TUN adapter. Useful for apps/games that don't expose a proxy setting.
 5. **Cloud Sync** *(new — v4.5.1+)* — syncs profiles (cookies/logins), the profile list, proxy inventory and groups to the cloud; use them across multiple machines with one license.
@@ -175,11 +174,10 @@ VsisLogin có 2 đường update:
 - Pagination preserved on Run/Stop flips — no reset to page 1
 
 #### 📱 Android Emulator Manager
-- Auto-discovery of LDPlayer (v4 / v9 / v64), Nox, MEmu, BlueStacks via process scan
-- Auto-enables `adbDebug = 1` on every LDPlayer instance (including newly-created ones via FileSystemWatcher) — no manual Settings dive
-- Per-emulator proxy: `adb shell settings put global http_proxy` + `PROXY_CHANGE` broadcast to force app re-read
+- Auto-discovery of LDPlayer (v4 / v9 / v64), Nox, MEmu via process scan
+- Per-emulator proxy assigned automatically
 - Hot-apply binding while the engine is running — no Stop → Start cycle needed
-- DNS / QUIC / ICMP / IPv6 leak guard (WinDivert) — blocks real-IP leaks via non-HTTP channels
+- DNS / QUIC / ICMP / IPv6 leak guard — blocks real-IP leaks via non-HTTP channels
 
 #### 🌐 Proxy Manager
 - HTTP CONNECT + SOCKS5 (RFC 1928)
