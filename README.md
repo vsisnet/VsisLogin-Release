@@ -260,6 +260,28 @@ The key activates per email + key. Logged in once, the key is cached for subsequ
 
 ## 📋 Changelog
 
+### v4.7.0
+
+**🇻🇳 Nâng cấp Quản lý giả lập — Cài App + quản lý instance 📲**
+- **Cài App vào giả lập**: tìm app trên CH Play → **tải & cài tự động** (hỗ trợ **APK & XAPK** split/OBB), hoặc cài từ **file .apk/.xapk** có sẵn. Tự mở giả lập (đợi boot xong) nếu chưa chạy.
+- **Thêm / Xóa giả lập** ngay trong app (LDPlayer · NoxPlayer · MEmu).
+- **Bật / Tắt tất cả** (hoặc theo các giả lập đang chọn) + **chọn nhiều** giả lập.
+- **Tự sắp xếp cửa sổ** giả lập.
+- Dialog **Chọn proxy** thêm cột **trạng thái live / not-live** + nút kiểm tra lại.
+- Dialog **Cài đặt giả lập**: bật/tắt loại giả lập, số giả lập mỗi proxy, ẩn install.
+- Dọn giao diện gọn gàng + đa ngôn ngữ.
+
+**🇬🇧 Emulator Manager upgrade — Install App + instance management 📲**
+- **Install app to emulators**: search Google Play → **auto download & install** (**APK & XAPK** split/OBB), or install from a local **.apk/.xapk** file. Auto-starts the emulator (waits for boot) if it's not running.
+- **Add / Delete emulator** in-app (LDPlayer · NoxPlayer · MEmu).
+- **Start / Stop all** (or only the selected ones) + **multi-select** emulators.
+- **Auto-arrange** emulator windows.
+- **Pick proxy** dialog now shows a **live / dead status** column + re-check button.
+- **Emulator settings** dialog: toggle emulator types, emulators per proxy, hide installs.
+- Cleaner UI + localization.
+
+---
+
 ### v4.6.0
 
 **🇻🇳 Tính năng mới — Proxy giả lập qua WinDivert (không cần ADB) 🛡️**
