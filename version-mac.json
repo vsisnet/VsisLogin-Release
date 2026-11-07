@@ -1,6 +1,6 @@
 {
-  "version": "4.13.0",
-  "dmgUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/mac-v4.13.0/VsisLogin-4.13.0-mac-arm64.dmg",
-  "sha256": "c8bc518cb5ed11f2b5d308fb16fb6952c28f30117ea32d7d9808e2d383785c14",
-  "notes": "Bản macOS đầu tiên"
+  "version": "4.13.1",
+  "dmgUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/mac-v4.13.1/VsisLogin-4.13.1-mac-arm64.dmg",
+  "sha256": "aacec1cceeeea7ade1b3d1b6b4d07d16ed9b834e340131a502de94949cedbbef",
+  "notes": "Đóng cửa sổ Vsiris thì hồ sơ tự về RUN; hỏi xác nhận khi tắt VsisLogin"
 }
