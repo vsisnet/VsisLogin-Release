@@ -1,6 +1,6 @@
 {
-  "version": "4.13.3",
-  "dmgUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/mac-v4.13.3/VsisLogin-4.13.3-mac-arm64.dmg",
-  "sha256": "e21177a33df444e75983c4807ae52b6635a658d45a66a9fdc1634f4beb4dcaa4",
-  "notes": "Popup tài khoản đủ thông tin key; ô Không hiển thị lại ở popup gia hạn; chọn proxy từ kho bằng hộp thoại riêng; cột Hoạt động rộng hơn."
+  "version": "4.13.4",
+  "dmgUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/mac-v4.13.4/VsisLogin-4.13.4-mac-arm64.dmg",
+  "sha256": "7c66f0b2995ce5e06d45b3e57d2962b9cd8a7eac1628f01f1a732030d8e811fb",
+  "notes": "Sửa nút cập nhật: bấm thông báo bản mới giờ tự tải và cài đặt."
 }
