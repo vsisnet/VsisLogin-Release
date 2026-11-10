@@ -1,6 +1,6 @@
 {
-  "version": "4.13.1",
-  "dmgUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/mac-v4.13.1/VsisLogin-4.13.1-mac-arm64.dmg",
-  "sha256": "aacec1cceeeea7ade1b3d1b6b4d07d16ed9b834e340131a502de94949cedbbef",
-  "notes": "Đóng cửa sổ Vsiris thì hồ sơ tự về RUN; hỏi xác nhận khi tắt VsisLogin"
+  "version": "4.13.3",
+  "dmgUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/mac-v4.13.3/VsisLogin-4.13.3-mac-arm64.dmg",
+  "sha256": "e21177a33df444e75983c4807ae52b6635a658d45a66a9fdc1634f4beb4dcaa4",
+  "notes": "Popup tài khoản đủ thông tin key; ô Không hiển thị lại ở popup gia hạn; chọn proxy từ kho bằng hộp thoại riêng; cột Hoạt động rộng hơn."
 }
