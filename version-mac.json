@@ -1,6 +1,6 @@
 {
-  "version": "4.13.4",
-  "dmgUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/mac-v4.13.4/VsisLogin-4.13.4-mac-arm64.dmg",
-  "sha256": "7c66f0b2995ce5e06d45b3e57d2962b9cd8a7eac1628f01f1a732030d8e811fb",
-  "notes": "Sửa nút cập nhật: bấm thông báo bản mới giờ tự tải và cài đặt."
+  "version": "4.13.5",
+  "dmgUrl": "https://github.com/vsisnet/VsisLogin-Release/releases/download/mac-v4.13.5/VsisLogin-4.13.5-mac-arm64.dmg",
+  "sha256": "eee79f00448ebf3b9048d870bbeed5c2fd03f9dc9e569b7c67f57dd708f8932f",
+  "notes": "Chèn proxy từ kho bằng hộp thoại chọn nhiều (có chọn tất cả); ô nhập có viền; nút Chạy/Sửa/Xóa trang Automation cân đối hơn."
 }
